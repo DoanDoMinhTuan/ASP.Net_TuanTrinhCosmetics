@@ -120,7 +120,7 @@ namespace eShopSolution.WebApp.Controllers
             //                                                  "your_email_here", "your_password_here");
 
             var email = new EmailService.EmailService();
-            email.Send("hytranluan@gmail.com", user.ResultObj.Email, "XÁC NHẬN TÀI KHOẢN", confirmationLink);
+            email.Send("tuantrinhcosmetics29@gmail.com", user.ResultObj.Email, "XÁC NHẬN TÀI KHOẢN", confirmationLink);
             return RedirectToAction(nameof(SuccessRegistration));
         }
 

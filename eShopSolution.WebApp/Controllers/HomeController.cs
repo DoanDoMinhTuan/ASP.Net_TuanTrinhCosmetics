@@ -88,15 +88,22 @@ namespace eShopSolution.WebApp.Controllers
 
             foreach (var item in viewModel.LatestProducts)
             {
-                var category = await _categoryApiClient.GetById(item.Id);
-                item.Category = category;
+                var category = await _categoryApiClient.GetById(item.CategoryId);
+                if (category != null) // Kiểm tra nếu category không null trước khi gán
+                {
+                    item.Category = category;
+                }
             }
 
             foreach (var item in viewModel.FeaturedProducts)
             {
-                var category = await _categoryApiClient.GetById(item.Id);
-                item.Category = category;
+                var category = await _categoryApiClient.GetById(item.CategoryId);
+                if (category != null) // Kiểm tra nếu category không null trước khi gán
+                {
+                    item.Category = category;
+                }
             }
+
 
             return View(viewModel);
         }

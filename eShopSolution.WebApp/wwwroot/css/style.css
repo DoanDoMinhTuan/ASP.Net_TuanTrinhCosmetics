@@ -1,59 +1,8 @@
-/*
-Template Name: Electro - HTML Ecommerce Template
-Author: yaminncco
 
-Colors:
-	Body 		: #333
-	Headers 	: #2B2D42
-	Primary 	: #D10024
-	Dark 		: #15161D ##1E1F29
-	Grey 		: #E4E7ED #FBFBFC #8D99AE #B9BABC
-
-Fonts: Montserrat
-
-Table OF Contents
-------------------------------------
-1 > GENERAL
------- Typography
------- Buttons
------- Inputs
------- Sections
------- Breadcrumb
-2 > HEADER
------- Top header
------- Logo
------- Search
------- Cart
-3 > NAVIGATION
------- Main nav
------- Responsive Nav
-4 > CATEGORY SHOP
-5 > HOT DEAL
-6 > PRODUCT
------- Product
------- Widget product
------- Product slick
-7 > STORE PAGE
------- Aside
------- Store
-8 > PRODUCT DETAILS PAGE
------- Product view
------- Product details
------- Product tab
-9 > CHECKOUT PAGE
-10 > NEWSLETTER
-11 > FOOTER
-11 > SLICK STYLE
-12 > RESPONSIVE
-------------------------------------*/
 
 /*=========================================================
 	01 -> GENERAL
 ===========================================================*/
-
-/*----------------------------*\
-	Typography
-\*----------------------------*/
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -724,7 +673,7 @@ textarea.input {
   top: 0;
   bottom: 0;
   left: 0px;
-  width: 60%;
+  width: 25%;
   background: #D10024;
   opacity: 0.9;
   -webkit-transform: skewX(-45deg);
@@ -789,7 +738,7 @@ textarea.input {
   padding: 60px 0px;
   margin: 30px 0px;
   background-color: #E4E7ED;
-  background-image: url('../img/hotdeal.png');
+  background-image: url('../img/hot_deal.png');
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -798,7 +747,7 @@ textarea.input {
   text-align: center;
 }
 
-.hot-deal .hot-deal-countdown {
+.hot-deal .hot-deal-countdown { 
   margin-bottom: 30px;
 }
 

@@ -58,12 +58,23 @@
                             <td>
                                 @{
                                     string html = @Model.Description;
-                                    string removeFirstFigure = html.Remove(0, 22);
-                                    string removeLastFigure = removeFirstFigure.Remove(removeFirstFigure.Length - 9);
-                                    string addedTableFormat = removeLastFigure.Insert(6, " class=\"table table-bordered table-striped\"");
+
+                                    // Kiểm tra xem chiều dài của chuỗi có đủ lớn để loại bỏ không
+                                    if (html.Length >= 31)
+                                    {
+                                        // Loại bỏ các ký tự không hợp lệ từ chuỗi Description và thêm class cho bảng
+                                        string formattedHtml = html.Remove(0, 22).Remove(html.Length - 9);
+                                        string addedTableFormat = "<table class=\"table table-bordered table-striped\">" + formattedHtml + "</table>";
+                                        @Html.Raw(addedTableFormat)
+                                    }
+                                    else
+                                    {
+                                        // Trường hợp chiều dài của chuỗi không đủ để loại bỏ các ký tự không hợp lệ
+                                        @Html.Raw(html)
+                                    }
                                 }
-                                @Html.Raw(addedTableFormat)
                             </td>
+
                         </tr>
                         <tr>
                             <td class="font-weight-bold">

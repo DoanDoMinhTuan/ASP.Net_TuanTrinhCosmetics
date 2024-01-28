@@ -141,13 +141,19 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     @{
-                                        string html = @Model.Product.Description;
+                                        // Lấy mô tả sản phẩm từ model
+                                        string html = Model.Product.Description;
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(html) && html.Length >= 31)
+                                    {
+                                        // Thực hiện các thao tác trên chuỗi mô tả sản phẩm
                                         string removeFirstFigure = html.Remove(0, 22);
                                         string removeLastFigure = removeFirstFigure.Remove(removeFirstFigure.Length - 9);
                                         string addedTableFormat = removeLastFigure.Insert(6, " class=\"table table-bordered table-striped\"");
+                                        @Html.Raw(addedTableFormat)
                                     }
-                                    @Html.Raw(addedTableFormat)
-                                    @*@Html.Raw(Model.Product.Description)*@
+
                                 </div>
                             </div>
                         </div>

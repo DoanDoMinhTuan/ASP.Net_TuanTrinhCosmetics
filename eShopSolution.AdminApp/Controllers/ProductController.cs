@@ -169,6 +169,36 @@ namespace eShopSolution.AdminApp.Controllers
 
             var category = await _categoryApiClient.GetById(product.CategoryId);
 
+            // Kiểm tra nếu chuỗi ThumbnailImage không rỗng
+            if (!string.IsNullOrEmpty(product.ThumbnailImage))
+            {
+                // Đặt 'startIndex' và 'count' tại các giá trị phù hợp, ví dụ: 0 và 5
+                int startIndex = 0;
+                int count = 5;
+
+                // Kiểm tra nếu độ dài của chuỗi lớn hơn chỉ số bạn cố gắng loại bỏ
+                if (product.ThumbnailImage.Length > startIndex)
+                {
+                    // Loại bỏ các kí tự không hợp lệ từ chuỗi ThumbnailImage
+                    product.ThumbnailImage = product.ThumbnailImage.Remove(startIndex, count);
+                }
+            }
+
+            // Kiểm tra nếu chuỗi ProductImage không rỗng
+            if (!string.IsNullOrEmpty(product.ProductImage))
+            {
+                // Đặt 'startIndex' và 'count' tại các giá trị phù hợp, ví dụ: 0 và 5
+                int startIndex = 0;
+                int count = 5;
+
+                // Kiểm tra nếu độ dài của chuỗi lớn hơn chỉ số bạn cố gắng loại bỏ
+                if (product.ProductImage.Length > startIndex)
+                {
+                    // Loại bỏ các kí tự không hợp lệ từ chuỗi ProductImage
+                    product.ProductImage = product.ProductImage.Remove(startIndex, count);
+                }
+            }
+
             var detailVm = new ProductViewModel()
             {
                 Price = product.Price,
@@ -183,5 +213,6 @@ namespace eShopSolution.AdminApp.Controllers
 
             return View(detailVm);
         }
+
     }
 }

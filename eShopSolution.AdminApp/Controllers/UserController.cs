@@ -80,6 +80,7 @@ namespace eShopSolution.AdminApp.Controllers
             return View(request);
         }
 
+        // Edit Functionality
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -118,21 +119,13 @@ namespace eShopSolution.AdminApp.Controllers
             return View(request);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Logout()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.Session.Remove("Token");
-            Response.Cookies.Delete("userToken");
-            return RedirectToAction("Index", "Login");
-        }
-
+        // Delete Functionality
         [HttpGet]
         public IActionResult Delete(Guid id)
         {
-            return View(new UserDeleteRequest() 
-            { 
-                 Id = id
+            return View(new UserDeleteRequest()
+            {
+                Id = id
             });
         }
 
@@ -153,49 +146,6 @@ namespace eShopSolution.AdminApp.Controllers
             return View(request);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> RoleAssign(Guid id)
-        {
-            var roleAssignRequest = await GetRoleAssignRequest(id);
-            return View(roleAssignRequest);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> RoleAssign(RoleAssignRequest request)
-        {
-            if (!ModelState.IsValid)
-                return View();
-
-            var result = await _userApiClient.RoleAssign(request.Id, request);
-            if (result.IsSuccessed)
-            {
-                TempData["result"] = "Cập nhật quyền thành công";
-                return RedirectToAction("Index");
-            }  
-             
-
-            ModelState.AddModelError("", result.Message);
-            var roleAssignRequest = await GetRoleAssignRequest(request.Id);
-
-            return View(roleAssignRequest);
-        }
-
-        // Dùng cho Http Get trang gán quyền Hiện ra tẩt cả role + role user đã chọn
-        private async Task<RoleAssignRequest> GetRoleAssignRequest(Guid id)
-        {
-            var userObj = await _userApiClient.GetById(id);
-            var roleObj = await _roleApiClient.GetAll();
-            var roleAssignRequest = new RoleAssignRequest();
-            foreach (var role in roleObj.ResultObj)
-            {
-                roleAssignRequest.Roles.Add(new SelectItem()
-                {
-                    Id = role.Id.ToString(),
-                    Name = role.Name,
-                    Selected = userObj.ResultObj.Roles.Contains(role.Name)
-                });
-            }
-            return roleAssignRequest;
-        }
+      
     }
 }

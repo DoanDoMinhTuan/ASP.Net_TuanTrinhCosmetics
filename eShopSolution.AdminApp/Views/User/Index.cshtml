@@ -69,7 +69,6 @@
                     <tbody>
                         @foreach (var item in Model.Items)
                         {
-
                             if (item.UserName != "admin")
                             {
                                 <tr>
@@ -84,10 +83,14 @@
                                     </td>
                                     <td class="text-center">
                                         <button class="btn btn-primary">@Html.ActionLink("Xem chi tiết", "Details", new { id = item.Id })</button>
+                                        <button class="btn btn-warning">@Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.Id })</button>
+                                        <button class="btn btn-danger">@Html.ActionLink("Xóa", "Delete", new { id = item.Id })</button>
+                                        <button class="btn btn-danger">@Html.ActionLink("Cấp quyền", "Role", new { id = item.Id })</button>
                                     </td>
                                 </tr>
                             }
                         }
+
                     </tbody>
                 </table>
             </div>
